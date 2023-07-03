@@ -1,0 +1,23 @@
+.list {
+    max-width: 500px;
+    margin: auto;
+}
+
+.list .list-items {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.list-items p {
+    border: 1px solid var(--borders);
+    background-color: var(--black3);
+    border-radius: 5rem;
+    font-size: 1.5rem;
+    padding: 1.5rem 2rem;
+    color: var(--text-contrast);
+    text-align: left;
+    margin: 0;
+    display: block;
+    flex-grow: 1;
+}

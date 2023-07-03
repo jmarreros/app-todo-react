@@ -1,11 +1,11 @@
-function TodoItem(){
-    return (
-      <li>
-        <span>V</span>
-        <p>Hacer algo útil</p>
-        <span>X</span>
-      </li>
-    );
+function TodoItem(props) {
+  return (
+    <li className="list-items">
+      <span className="status">{props.completed}</span>
+      <p className="text">{props.text}</p>
+      <span className="remove">X</span>
+    </li>
+  );
 }
 
 export { TodoItem }

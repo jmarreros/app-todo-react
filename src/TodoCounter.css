@@ -1,0 +1,7 @@
+.completed {
+    color: var(--completed);
+}
+
+.total {
+    color: var(--primary);
+}
