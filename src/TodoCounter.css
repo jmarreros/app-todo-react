@@ -1,5 +1,5 @@
-.completed {
-    color: var(--completed);
+h1 {
+    font-weight: bold;
 }
 
 .total {
