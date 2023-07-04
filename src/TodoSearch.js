@@ -1,11 +1,15 @@
 import "./TodoSearch.css";
 
-function TodoSearch() {
+function TodoSearch({ searchValue, setSearchValue }) {
+
   return (
     <section className="search">
       <input
+        value={searchValue}
         onChange={
-          (event) => console.log(event.target.value)
+          (event) => {
+            setSearchValue(event.target.value);
+          }
         }
         placeholder="Buscar..." type="search" />
     </section>
