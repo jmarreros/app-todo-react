@@ -14,11 +14,35 @@ const defaultTodos = [
 ]
 
 function App() {
-  const [todos, setTodos] = React.useState(defaultTodos);
+  let [todos, setTodos] = React.useState(defaultTodos);
   const [searchValue, setSearchValue] = React.useState('');
 
   const completedTodos = todos.filter(todo => !!todo.completed).length;
   const totalTodos = todos.length;
+
+  // Derivate state
+  const searchedTodos = todos.filter(
+    todo => {
+      const todoText = todo.text.toLowerCase();
+      const searchText = searchValue.toLowerCase();
+      return todoText.includes(searchText);
+    }
+  );
+
+  const handleOnCompleted = (keyText) => {
+    const newTodos = [...todos];
+
+    const todoIndex = newTodos.findIndex((todo) => todo.text === keyText);
+    newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
+
+    setTodos(newTodos);
+  }
+
+  const handleOnDelete = (keyText) => {
+    const newTodos = todos.filter(todo => todo.text !== keyText);
+
+    setTodos(newTodos);
+  }
 
   return (
     <>
@@ -31,8 +55,14 @@ function App() {
 
       <TodoList>
         {
-          defaultTodos.map(todo => (
-            <TodoItem key={todo.text} text={todo.text} completed={todo.completed} />
+          searchedTodos.map(todo => (
+            <TodoItem
+              key={todo.text}
+              text={todo.text}
+              completed={todo.completed}
+              onCompleted={() => handleOnCompleted(todo.text)}
+              onDelete={() => handleOnDelete(todo.text)}
+            />
           ))
         }
       </TodoList>
