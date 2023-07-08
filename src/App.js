@@ -6,15 +6,28 @@ import { TodoItem } from './TodoItem';
 import { CreateTodoButton } from './CreateTodoButton';
 import './App.css';
 
-const defaultTodos = [
-  { text: 'cortar cebolla', completed: true },
-  { text: 'estudiar curso', completed: true },
-  { text: 'salir a correr', completed: false },
-  { text: 'bailar con video', completed: false },
-]
+// const defaultTodos = [
+//   { text: 'cortar cebolla', completed: true },
+//   { text: 'estudiar curso', completed: true },
+//   { text: 'salir a correr', completed: false },
+//   { text: 'bailar con video', completed: false },
+// ]
+
+// localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
 
 function App() {
-  let [todos, setTodos] = React.useState(defaultTodos);
+  const localStorageTodos = localStorage.getItem('TODOS_V1');
+
+  let parsedTodos;
+
+  if (!localStorageTodos) {
+    localStorage.setItem('TODOS_V1', JSON.stringify([]));
+    parsedTodos = [];
+  } else {
+    parsedTodos = JSON.parse(localStorageTodos);
+  }
+
+  let [todos, setTodos] = React.useState(parsedTodos);
   const [searchValue, setSearchValue] = React.useState('');
 
   const completedTodos = todos.filter(todo => !!todo.completed).length;
@@ -29,19 +42,24 @@ function App() {
     }
   );
 
+  const saveTodos = (newTodos) => {
+    localStorage.setItem('TODOS_V1', JSON.stringify(newTodos));
+    setTodos(newTodos);
+  }
+
   const handleOnCompleted = (keyText) => {
     const newTodos = [...todos];
 
     const todoIndex = newTodos.findIndex((todo) => todo.text === keyText);
     newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
 
-    setTodos(newTodos);
+    saveTodos(newTodos);
   }
 
   const handleOnDelete = (keyText) => {
     const newTodos = todos.filter(todo => todo.text !== keyText);
 
-    setTodos(newTodos);
+    saveTodos(newTodos);
   }
 
   return (
