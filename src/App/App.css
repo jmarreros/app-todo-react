@@ -75,3 +75,8 @@ button:hover {
 .uncompleted {
     color: var(--uncompleted);
 }
+
+.msg {
+    color: white;
+    font-size: 2rem;
+}
