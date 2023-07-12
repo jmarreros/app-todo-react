@@ -1,10 +1,14 @@
+import React from "react";
+import { TodoContext } from "../TodoContext";
 import "./CreateTodoButton.css";
 
 function CreateTodoButton() {
+    const { openModal, setOpenModal } = React.useContext(TodoContext);
+
     return (
         <section className="footer">
             <button onClick={
-                () => console.log('Le diste click')
+                () => setOpenModal(!openModal)
             }>
                 Crear Tarea
             </button>
