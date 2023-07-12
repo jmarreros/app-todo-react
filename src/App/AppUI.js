@@ -46,9 +46,7 @@ function AppUI() {
             <CreateTodoButton />
 
             {openModal && (
-                <Modal>
-                    <span>La funcionalidad de agregar todos</span>
-                </Modal>
+                <Modal />
             )}
         </>
     );
