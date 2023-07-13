@@ -24,6 +24,17 @@ function TodoProvider({ children }) {
         }
     );
 
+    const addTodo = (text) => {
+        const newTodos = [...todos];
+
+        newTodos.push({
+            text,
+            completed: false
+        });
+
+        saveTodos(newTodos);
+    }
+
     const handleOnCompleted = (keyText) => {
         const newTodos = [...todos];
 
@@ -51,7 +62,8 @@ function TodoProvider({ children }) {
                 handleOnCompleted,
                 handleOnDelete,
                 openModal,
-                setOpenModal
+                setOpenModal,
+                addTodo
             }
         }>
             {children}

@@ -1,0 +1,26 @@
+.modalContainer form {
+    border: 1px solid grey;
+    padding: 1rem 2.5rem;
+    border-radius: 2rem;
+    min-width: 40rem;
+    min-height: 20rem;
+    background-color: var(--black3);
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.modalContainer form h3 {
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+
+button.btn-cancel {
+    background-color: transparent;
+    border: 1px solid grey;
+}
+
+.btnContainer button {
+    margin-right: 1rem;
+}
